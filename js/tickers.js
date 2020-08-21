@@ -8,7 +8,7 @@
 jQuery(document).ready(function($) {
   ticker("ticker1");
   ticker("ticker2");
-
+  // ticker("ticker3");
   function ticker(element) {
     
     var ticker = document.getElementById(element);

@@ -35,6 +35,7 @@
                                     <div class="lid"></div>
                             </div>   
                     </div>
+
     </div>
 
     <div class="inku-site-wrap">
@@ -47,6 +48,7 @@
         ?>
         <header id="header" class="site-header" <?php echo ( $header_image ) ? 'style="background-image: url(' . esc_url( $header_image ) . ');"' : ''; ?>>
             <div class="fixedtop">
+                <div class="row1">
             <button id="inku-nav-btn" type="button" class="menu-toggle" data-toggle="collapse" aria-controls="primary-menu" aria-expanded="false">
                 <div class="eyes">   
                     <div class="eye">
@@ -59,7 +61,9 @@
                                 <div class="lid"></div>
                         </div>   
                 </div>
+  
             </button>  
+   
             <div id="ticker1">
 				<div class="headlines">
 					
@@ -69,9 +73,48 @@
 					<a class="ticker-object">BODY OCCUPATION == </a><a class="ticker-object"> <?php bloginfo( 'description' ); ?></a><a class="ticker-object" >//RESEARCH RESIDENCY</a><a class="ticker-object" href="http://dadapost.com/"> @ DADA POST - BERLIN !!</a>
 	
 				</div>
-			</div>
-                   
+            </div>
+            
+    </div>
+    <!-- <div id="ticker3">
+				<div class="headlines">
+					
+                    <a href="/projects" class="ticker-object"> > Projects</a>
+                    <a href="/artists" class="ticker-object"> > Artists</a>
+                    <a href="/3Dexperiences" class="ticker-object"> > 3D</a>
+                    <a href="/bodyoccupation" class="ticker-object"> > Body Occupation</a>
+                    <a href="/collective" class="ticker-object"> > Inkubator Collective</a>
+                    <a href="/projects" class="ticker-object"> > Projects</a>
+                    <a href="/artists" class="ticker-object"> > Artists</a>
+                    <a href="/3Dexperiences" class="ticker-object"> > 3D</a>
+                    <a href="/bodyoccupation" class="ticker-object"> > Body Occupation</a>
+                    <a href="/collective" class="ticker-object"> > Inkubator Collective</a>
+                    <a href="/projects" class="ticker-object"> > Projects</a>
+                    <a href="/artists" class="ticker-object"> > Artists</a>
+                    <a href="/3Dexperiences" class="ticker-object"> > 3D</a>
+                    <a href="/bodyoccupation" class="ticker-object"> > Body Occupation</a>
+                    <a href="/collective" class="ticker-object"> > Inkubator Collective</a>
+                    <a href="/projects" class="ticker-object"> > Projects</a>
+                    <a href="/artists" class="ticker-object"> > Artists</a>
+                    <a href="/3Dexperiences" class="ticker-object"> > 3D</a>
+                    <a href="/bodyoccupation" class="ticker-object"> > Body Occupation</a>
+                    <a href="/collective" class="ticker-object"> > Inkubator Collective</a>
+                    <a href="/projects" class="ticker-object"> > Projects</a>
+                    <a href="/artists" class="ticker-object"> > Artists</a>
+                    <a href="/3Dexperiences" class="ticker-object"> > 3D</a>
+                    <a href="/bodyoccupation" class="ticker-object"> > Body Occupation</a>
+                    <a href="/collective" class="ticker-object"> > Inkubator Collective</a>
+                    <a href="/projects" class="ticker-object"> > Projects</a>
+                    <a href="/artists" class="ticker-object"> > Artists</a>
+                    <a href="/3Dexperiences" class="ticker-object"> > 3D</a>
+                    <a href="/bodyoccupation" class="ticker-object"> > Body Occupation</a>
+                    <a href="/collective" class="ticker-object"> > Inkubator Collective</a>
+
+				
+				</div>
+            </div> -->
             </div>  
+            
           
               
     

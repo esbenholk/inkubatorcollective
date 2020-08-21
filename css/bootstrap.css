@@ -278,12 +278,10 @@ body {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.875;
-  color: #808080;
-  background: -webkit-gradient(linear, right top, left top, from(#00ffbd), to(#40ccc0));
-  background: linear-gradient(270deg, #00ffbd, #40ccc0);
-  background-size: 400% 400%;
-  -webkit-animation: gradient 0s ease infinite;
-  animation: gradient 0s ease infinite;
+  color: white;
+  background-color: rgba(0, 255, 189,1);
+
+
  
 }
 input,

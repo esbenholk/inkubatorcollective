@@ -10,14 +10,9 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main grid site-content">
 
 		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-			
-			</header><!-- .page-header -->
-
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) :
@@ -44,5 +39,5 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
+
 get_footer();

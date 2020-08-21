@@ -1,3 +1,6 @@
+
+
+
 <?php
 /**
  * The template for displaying all single posts.
@@ -9,6 +12,25 @@
 
 get_header(); ?>
 
+<?php if ( get_field( '3d_image' ) ) : ?>
+	<img id="sky" style="display:none;" src="<?php the_field( '3d_image' ); ?>" />
+
+	<div id="canvas">
+		
+	</div>
+	<div id="buttons">
+  			<button id="mobileToggle" class="devicetoggle">MOBILE</button>
+  			<button id="desktopToggle" class="devicetoggle">DESKTOP</button>
+	</div>
+
+</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
+	<?php
+
+	$src = get_stylesheet_directory_uri().'/js/skybox.js';
+	?>
+	<script type="module" src="<?php echo esc_url($src); ?>"></script>
+<?php else: ?>
 	<?php
 
 	if ( 'jetpack-portfolio' == get_post_type() ) :
@@ -30,12 +52,7 @@ get_header(); ?>
 
 				<?php inku_post_navigation(); ?>
 
-				<?php
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-				?>
+				
 
 			<?php endwhile; // End of the loop. ?>
 
@@ -43,11 +60,11 @@ get_header(); ?>
 
 	<?php endif; ?>
 	
-<?php 
-if ( 'jetpack-portfolio' != get_post_type() ) {
-	get_sidebar(); 
-}
 
-?>
+
+<?php endif ?>
+	
 
 <?php get_footer(); ?>
+<?php inku_post_navigation(); ?>
+
