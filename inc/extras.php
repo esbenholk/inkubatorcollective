@@ -312,7 +312,7 @@ if ( ! function_exists( 'inku_post_navigation' ) ) {
                     <?php if ( ! empty( $prev_post ) ): ?>
                     <div class="nav-previous" <?php echo $post_nav_bck; // WPCS: XSS OK. ?>>
                         <?php
-                        $prev_text = esc_html__( 'Previous Post', 'inku' );
+                        $prev_text = esc_html__( '', 'inku' );
                         if ( inku_is_portfolio_type( get_post_type() ) ) {
                             $prev_text = esc_html__( 'Previous Project', 'inku' );
                         }
@@ -323,7 +323,7 @@ if ( ! function_exists( 'inku_post_navigation' ) ) {
                     <?php if ( ! empty( $next_post ) ): ?>
                     <div class="nav-next" <?php echo $post_nav_bck_next; // WPCS: XSS OK. ?>>
                         <?php
-                        $next_text = esc_html__( 'Next Post', 'inku' );
+                        $next_text = esc_html__( '', 'inku' );
                         if ( inku_is_portfolio_type( get_post_type() ) ) {
                             $next_text = esc_html__( 'Next Project', 'inku' );
                         }

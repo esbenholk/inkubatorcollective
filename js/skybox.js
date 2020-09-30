@@ -1,15 +1,12 @@
-import * as THREE from '/wp-content/themes/krea/three/build/three.module.js';
-import { PointerLockControls } from '/wp-content/themes/krea/three/examples/jsm/controls/PointerLockControls.js';
-import { OrbitControls } from "/wp-content/themes/krea/three/examples/jsm/controls/OrbitControls.js";
-import { Reflector } from '/wp-content/themes/krea/three/examples/jsm/objects/Reflector.js';
-import { GLTFLoader } from '/wp-content/themes/krea/three/examples/jsm/loaders/GLTFLoader.js';
-import { OBJLoader } from '/wp-content/themes/krea/three/examples/jsm/loaders/OBJLoader.js';
+import * as THREE from '/wp-content/themes/inkubatorcollective/three/build/three.module.js';
+import { OrbitControls } from "/wp-content/themes/inkubatorcollective/three/examples/jsm/controls/OrbitControls.js";
+import { DeviceOrientationControls } from "/wp-content/themes/inkubatorcollective/three/examples/jsm/controls/DeviceOrientationControls.js";
 
-import { DeviceOrientationControls } from "/wp-content/themes/krea/three/examples/jsm/controls/DeviceOrientationControls.js";
 
-var camera, scene, renderer, controls, device;
+
+var camera, scene, renderer, controls, device, sky;
 let collidableObjects = [];
-let sky = document.getElementById('sky');
+let canvas = document.getElementById("canvas");
 
 function init(controlSystem){
     const textureLoader = new THREE.TextureLoader();
@@ -28,8 +25,14 @@ function init(controlSystem){
         controls = new DeviceOrientationControls( camera );
     } else if(controlSystem === "orbitcontrol"){
         controls = new OrbitControls(camera, document.body);
-        controls.update();
+        controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+				controls.dampingFactor = 0.05;
 
+				controls.screenSpacePanning = false;
+
+				controls.minDistance = 100;
+				controls.maxDistance = 500;
+ 
     }
     controls.noPan = true;
     controls.maxDistance = controls.minDistance = 10;  
@@ -37,28 +40,24 @@ function init(controlSystem){
     controls.noRotate = true;
     controls.noZoom = true;
     
-
-    renderer = new THREE.WebGLRenderer({
-                antialias: true,
-                alpha: true
-                });
-
-    let canvas = document.getElementById("canvas");
-    renderer.setSize( window.innerWidth, window.innerHeight );
-
+   
+    if(canvas.children.length>0){
+        canvas.removeChild(canvas.firstChild);
+    }
+    renderer = new THREE.WebGLRenderer( { antialias: true,  alpha: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
-            
+    renderer.setSize( window.innerWidth, window.innerHeight );
     canvas.appendChild( renderer.domElement );
 
     window.addEventListener("resize", onWindowResize, false);
-    createAtmosphere(sky);
+    createAtmosphere();
 }
 
-function createAtmosphere(background){
-    console.log(background.src)
+function createAtmosphere(){
+    let texture = document.getElementById('sky');
     var atmosphere = new THREE.SphereGeometry(900,32,32);
     var atmosphereMaterial = new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load(background.src),
+        map: new THREE.TextureLoader().load(texture.src),
         side: THREE.DoubleSide
     })
     sky = new THREE.Mesh(atmosphere, atmosphereMaterial)
@@ -75,13 +74,23 @@ function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
     controls.update();
-    }
+    render();
+}
 
-    init("orbitcontrol");
-    animate();
+ 
+function render() {
+
+    renderer.render( scene, camera );
+
+}
+
+init("orbitcontrol");
+animate();
 
 
 let buttons = document.getElementById('buttons');
+
+
 
 
 document.getElementById("mobileToggle").onclick = function() {
@@ -90,28 +99,20 @@ document.getElementById("mobileToggle").onclick = function() {
     var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     if (isSafari && iOS) {
         device = "desktop";
-        decideEnvironment(device);
+        init("orbitcontrol");
+        animate();
     } else{
         device = "mobile";
-        decideEnvironment(device);
+        controls = new DeviceOrientationControls( camera );
     }
     
  };
 
 document.getElementById("desktopToggle").onclick = function() {
-        device = "desktop";
         buttons.style.display="none";
-        decideEnvironment(device);
+        device = "desktop";
+
 };
 
 
 
-function decideEnvironment(device){
-    if(device === "desktop"){
-        controls = new OrbitControls(camera, document.body);
-        controls.update();
-        }
-    else if(device === "mobile"){
-        controls = new DeviceOrientationControls( camera );
-    }
-    }

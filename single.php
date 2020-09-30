@@ -1,36 +1,51 @@
 
 
 
-<?php
-/**
- * The template for displaying all single posts.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package inku
- */
-
-get_header(); ?>
 
 <?php if ( get_field( '3d_image' ) ) : ?>
+	<?php get_header(); ?>
 	<img id="sky" style="display:none;" src="<?php the_field( '3d_image' ); ?>" />
 
-	<div id="canvas">
-		
-	</div>
-	<div id="buttons">
-  			<button id="mobileToggle" class="devicetoggle">MOBILE</button>
-  			<button id="desktopToggle" class="devicetoggle">DESKTOP</button>
-	</div>
+	<div id="canvas"></div>
+	<div class="instruction">
+			<div id="buttons">
+					<button id="mobileToggle" class="devicetoggle">MOBILE</button>
+					<button id="desktopToggle" class="devicetoggle">DESKTOP</button>
+			</div>
+		</div>
 
-</div>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
-	<?php
+	</div>
+	<?php $src = get_stylesheet_directory_uri().'/js/skybox.js' ?>
 
-	$src = get_stylesheet_directory_uri().'/js/skybox.js';
-	?>
 	<script type="module" src="<?php echo esc_url($src); ?>"></script>
+
+
+
+
+
+
+
+
+<?php elseif ( get_field( '3d_video' ) ) : ?>
+	<?php get_header(); ?>
+	<video id="sky" controls autoplay muted>
+    	<source src="<?php the_field( '3d_video' ); ?>" type="video/mp4" />
+    	Your browser does not support the video tag.
+ 	 </video>
+	<div id="canvas"></div>
+		<div class="instruction">
+			<div id="buttons">
+					<button id="mobileToggle" class="devicetoggle">MOBILE</button>
+					<button id="desktopToggle" class="devicetoggle">DESKTOP</button>
+			</div>
+		</div>
+	</div>
+	<?php $src = get_stylesheet_directory_uri().'/js/skybox-video.js'; ?>
+
+	<script type="module" src="<?php echo esc_url($src); ?>"></script>
+
 <?php else: ?>
+	<?php get_header(); ?>
 	<?php
 
 	if ( 'jetpack-portfolio' == get_post_type() ) :
@@ -50,7 +65,7 @@ get_header(); ?>
 
 				<?php get_template_part( 'template-parts/content', 'single' ); ?>
 
-				<?php inku_post_navigation(); ?>
+				
 
 				
 
@@ -63,8 +78,9 @@ get_header(); ?>
 
 
 <?php endif ?>
-	
+<?php inku_post_navigation(); ?>
+
+
 
 <?php get_footer(); ?>
-<?php inku_post_navigation(); ?>
 

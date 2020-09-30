@@ -10,65 +10,47 @@
  */
 
 ?>
+            
 
-            </div><!-- /#row -->
+            </div><!-- .row -->
 
-        </div><!-- /#container -->
+    </div><!-- .container -->
 
-    </main><!-- #main -->
-        
-
-
-
-
-
-    	<div class="fixedbottom">
-            <div id="ticker2">
-                    <div class="headlines">
-                        
-                        <a href="/bodyoccupation" class="ticker-object">BODY OCCUPATION == </a><a class="ticker-object"> <?php bloginfo( 'name' ); ?></a><a href="/residency" class="ticker-object" >//RESIDENCY</a>
-                        <a href="/collective" class="ticker-object" >hosted by: Inkubator Collective</a>
-                        <a class="ticker-object" href="http://dadapost.com/"> @ DADA POST - BERLIN !!</a>
-                        <a href="/bodyoccupation"  class="ticker-object">BODY OCCUPATION == </a><a class="ticker-object"> <?php bloginfo( 'description' ); ?></a><a href="/residency" class="ticker-object" >//RESIDENCY</a>
-                        <a href="/collective" class="ticker-object" >hosted by: Inkubator Collective</a>
-                        <a class="ticker-object" href="http://dadapost.com/"> @ DADA POST - BERLIN !!</a>
-   
-                       
-                    </div>
-                </div>
-  
-        </div><!-- .sub-footer -->
-</div><!-- /inku-site-wrap -->
+</main><!-- #main -->
 
 <div class="inku-main-menu">  
-    <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'inku' ); ?>">
-        <?php wp_nav_menu( array(
-            'theme_location' => 'primary',
-            'menu_id'        => 'primary-menu',
-        ) ); ?>
-        
-       
+    <button id="inku-nav-btn" type="button" class="menu-toggle" data-toggle="collapse" aria-controls="primary-menu" aria-expanded="false">
+            <div class="eyes">   
+                    <div class="eye">
+                            <div class="ball"></div>
+                                    <div class="lid"></div>
+                            </div>
 
+                            <div class="eye">
+                                    <div class="ball"></div>
+                            <div class="lid"></div>
+                    </div>   
+            </div>
+                
+    </button>  
+                    
+                                        
+     <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'inku' ); ?>">
+             
+            <?php wp_nav_menu( array(
+                        'theme_location' => 'primary',
+                        'menu_id'        => 'primary-menu',
+             ) ); ?>
+                       
     </nav><!-- #site-navigation -->
-        
+                    
 </div><!-- /inku-main-menu -->
 
         
-    
-                   
-
-				
-                    
-                
-              
-           
-	
-		
-			
-	</div>
 
 
-<?php wp_footer(); ?>
 
 </body>
+
+
 </html>

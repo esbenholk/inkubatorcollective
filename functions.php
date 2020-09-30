@@ -198,6 +198,7 @@ function inku_scripts() {
 	require get_template_directory() . '/inc/scripts/scripts.php';
 	wp_enqueue_script( 'inkubatorcollectivetheme-tickers', get_template_directory_uri() . '/js/tickers.js', array(), true );
 	wp_enqueue_script( 'inkubatorcollectivetheme-eyes', get_template_directory_uri() . '/js/eyes.js', array(), true );
+	wp_enqueue_script( 'script', get_template_directory_uri() . '/js/script.js', array(), true );
 
 
 

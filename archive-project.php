@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main grid site-content">
+	<main id="primary" class="site-main grid">
 
 		<?php if ( have_posts() ) : ?>
 			<?php

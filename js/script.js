@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-
+    console.log("document ready");
     //Remove transition delay on products
     setTimeout(function(){ $("body").removeClass('inku-animations-delay'); }, 2000);
 
@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
 
     $(document).on('click', '#inku-nav-btn', function(event) {
         event.preventDefault();
+        console.log("menu opens");
         /* Act on the event */
         $('body').toggleClass('inku-menu-open');
     });
@@ -18,6 +19,13 @@ jQuery(document).ready(function($) {
         /* Act on the event */
         $('body').toggleClass('inku-menu-open');
     });
+  
+    $(document).ready(function() {
+        console.log("move preloader");
+        $("inku-preloader").css("display", "none")
+  });
+  
+
 
 
 
