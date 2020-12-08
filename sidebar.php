@@ -1,16 +1,17 @@
 <?php
 /**
- * The sidebar containing the main widget area.
+ * The sidebar containing the main widget area
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package inku
+ * @package HOUSE_of_KILLLING
  */
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	return;
 }
 ?>
-<aside id="sidebar" class="col-md-3 col-md-push-1 widget-area" role="complementary">
+
+<aside id="secondary" class="widget-area">
 	<?php dynamic_sidebar( 'sidebar-1' ); ?>
-</aside><!-- #sidebar -->
+</aside><!-- #secondary -->

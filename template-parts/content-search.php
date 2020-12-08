@@ -1,55 +1,35 @@
 <?php
 /**
- * Template part for displaying posts.
+ * Template part for displaying results in search pages
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package inku
+ * @package HOUSE_of_KILLLING
  */
 
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<?php if ( has_post_thumbnail() ) : ?>
-		<div class="post-image">
-            <a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark">
-                <?php the_post_thumbnail( 'inku_post' ); ?>
-            </a>
-        </div><!-- /post-image -->
-        <?php endif; ?>
+	<header class="entry-header">
+		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
-        <div class="post-content">
+		<?php if ( 'post' === get_post_type() ) : ?>
+		<div class="entry-meta">
+			<?php
+			house_of_killing_posted_on();
+			house_of_killing_posted_by();
+			?>
+		</div><!-- .entry-meta -->
+		<?php endif; ?>
+	</header><!-- .entry-header -->
 
-			<header class="entry-header">
-        		<?php the_title( sprintf( '<h2 class="post-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-        	</header><!-- .entry-header -->
+	<?php house_of_killing_post_thumbnail(); ?>
 
-			<?php if ( 'post' === get_post_type() ) : ?>
-			<footer class="entry-footer">
-				<div class="metadata">
-	                <?php inku_metadata(); ?>
-	                <div class="clearfix"></div>
-	            </div><!-- /metadata -->
-            </footer><!-- .entry-footer -->
-            <?php endif; ?>
+	<div class="entry-summary">
+		<?php the_excerpt(); ?>
+	</div><!-- .entry-summary -->
 
-        	<div class="entry-content">
-				<?php
-					the_content();
-				?>
-
-				<?php
-					wp_link_pages( array(
-						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'inku' ),
-						'after'  => '</div>',
-					) );
-				?>
-			</div><!-- .entry-content -->
-
-			<div class="clearfix"></div>
-
-
-
-
-		</div><!-- /post_content -->
-</article><!-- #post-## -->
+	<footer class="entry-footer">
+		<?php house_of_killing_entry_footer(); ?>
+	</footer><!-- .entry-footer -->
+</article><!-- #post-<?php the_ID(); ?> -->

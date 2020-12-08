@@ -1,54 +1,56 @@
 <?php
 /**
- * The main template file.
+ * The main template file
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package inku
+ * @package HOUSE_of_KILLLING
  */
 
-get_header(); ?>
+get_header();
+?>
 
-	<div id="content" class="col-md-12">
+	<main id="primary" class="site-main">
 
-		<?php if ( have_posts() ) : ?>
-		
-			<div class="inku-post-wrapper">
+		<?php
+		if ( have_posts() ) :
 
-				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+			if ( is_home() && ! is_front_page() ) :
+				?>
+				<header>
+					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+				</header>
+				<?php
+			endif;
 
-					<?php
-						$post_format = get_post_format();
-						/*
-						 * Include the Post-Format-specific template for the content.
-						 * If you want to override this in a child theme, then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'template-parts/content', $post_format );
-					?>
+			/* Start the Loop */
+			while ( have_posts() ) :
+				the_post();
 
-				<?php endwhile; ?>
-				
-			</div><!-- /inku-post-wrapper -->
+				/*
+				 * Include the Post-Type-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+				 */
+				get_template_part( 'template-parts/content', get_post_type() );
 
-			<?php get_template_part( 'template-parts/pagination', 'index' ); ?>
+			endwhile;
 
-		<?php else : ?>
+			the_posts_navigation();
 
-			<?php get_template_part( 'template-parts/content', 'none' ); ?>
+		else :
 
-		<?php endif; ?>
+			get_template_part( 'template-parts/content', 'none' );
 
-	</div><!-- /content -->
+		endif;
+		?>
 
+	</main><!-- #main -->
 
-	
-
-
-<?php get_footer(); ?>
+<?php
+get_footer();

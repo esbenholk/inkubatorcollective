@@ -7,6 +7,11 @@
 
 jQuery(document).ready(function($) {
   ticker("ticker1");
+
+  if(document.getElementById("footer")){
+    ticker("ticker2");
+  }
+ 
   
   function ticker(element) {
     

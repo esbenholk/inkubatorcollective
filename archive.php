@@ -10,34 +10,76 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main grid">
+<main id="primary" class="site-main" id="archive-page">
+		<?php $src = get_stylesheet_directory_uri().'/js/raycast-picker.js';?>
 
-		<?php if ( have_posts() ) : ?>
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+		<script type="module" src="<?php echo esc_url($src); ?>"></script>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/archive-item', get_post_type() );
+		<div class="relative">
 
-			endwhile;
+			<div  id='loading-screen' class="loading-container">
+						<div id="loading-status" class="loading-circle">
+							<div class="loader">
+								<p>loading... <br>
+								</p>
+							</div>
+						</div>
+			</div>
 
-			the_posts_navigation();
+			<div id="canvas" class="online-exhibition-canvas"></div>
+		
+			<div class="fixed media-relative">
+				<div id="archive">
+					<?php if ( have_posts() ) : ?>
+						<?php
+						/* Start the Loop */
+						while ( have_posts() ) :
+							the_post();
 
-		else :
+							// /*
+							// * Include the Post-Type-specific template for the content.
+							// * If you want to override this in a child theme, then include a file
+							// * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+							// */
+							get_template_part( 'template-parts/archive-item', get_post_type() );
 
-			get_template_part( 'template-parts/content', 'none' );
+							?>
+								
 
-		endif;
-		?>
+						<?php
 
-	</main><!-- #main -->
+						endwhile;
+						
 
-<?php
+					else :
 
-get_footer();
+						get_template_part( 'template-parts/content', 'none' );
+
+					endif;
+					?>
+				</div>
+			</div>
+		
+		
+		</div>	
+
+
+
+
+		
+</main><!-- #main -->
+
+
+
+
+
+<div id="crystal" >	
+	<div class="flex-row right absolute">
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+
+	<img  src="https://stayvirtual.s3.amazonaws.com/crystals/greencrystal">
+
+</div>

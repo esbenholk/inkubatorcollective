@@ -1,7 +1,7 @@
 
-import * as THREE from '/wp-content/themes/inkubatorcollective/three/build/three.module.js';
-import { PointerLockControls } from '/wp-content/themes/inkubatorcollective/three/examples/jsm/controls/PointerLockControls.js';
-import { OrbitControls } from '/wp-content/themes/inkubatorcollective/three/examples/jsm/controls/OrbitControls.js';
+import * as THREE from '/wp-content/themes/house_of_killing/three/build/three.module.js';
+import { PointerLockControls } from '/wp-content/themes/house_of_killing/three/examples/jsm/controls/PointerLockControls.js';
+import { OrbitControls } from '/wp-content/themes/house_of_killing/three/examples/jsm/controls/OrbitControls.js';
 
 
 var camera, scene, renderer, controls, group;
@@ -467,7 +467,7 @@ function init() {
     // cloth material
 
     var loader = new THREE.TextureLoader();
-    var clothTexture = loader.load( '/wp-content/themes/inkubatorcollective/flag.jpg' );
+    var clothTexture = loader.load( '/wp-content/themes/house_of_killing/inkubatorflag.jpg' );
     clothTexture.anisotropy = 16;
 
     var clothMaterial = new THREE.MeshLambertMaterial( {

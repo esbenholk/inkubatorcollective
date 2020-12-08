@@ -1,44 +1,53 @@
 <?php
 /**
- * The template for displaying search results pages.
+ * The template for displaying search results pages
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package inku
+ * @package HOUSE_of_KILLLING
  */
 
-get_header(); ?>
+get_header();
+?>
 
-	<div id="content" class="col-md-12">
+	<main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title"><?php printf( /* translators: %s: search query */ esc_html__( 'Search Results for: %s', 'inku' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				<h1 class="page-title">
+					<?php
+					/* translators: %s: search query. */
+					printf( esc_html__( 'Search Results for: %s', 'house_of_killing' ), '<span>' . get_search_query() . '</span>' );
+					?>
+				</h1>
 			</header><!-- .page-header -->
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php
+			/* Start the Loop */
+			while ( have_posts() ) :
+				the_post();
 
-				<?php
 				/**
 				 * Run the loop for the search to output the results.
 				 * If you want to overload this in a child theme then include a file
 				 * called content-search.php and that will be used instead.
 				 */
 				get_template_part( 'template-parts/content', 'search' );
-				?>
 
-			<?php endwhile; ?>
+			endwhile;
 
-			<?php get_template_part( 'template-parts/pagination', 'search' ); ?>
+			the_posts_navigation();
 
-		<?php else : ?>
+		else :
 
-			<?php get_template_part( 'template-parts/content', 'none' ); ?>
+			get_template_part( 'template-parts/content', 'none' );
 
-		<?php endif; ?>
+		endif;
+		?>
 
-	</div><!-- /content -->
-	
-<?php get_footer(); ?>
+	</main><!-- #main -->
+
+<?php
+get_sidebar();
+get_footer();

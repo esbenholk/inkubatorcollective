@@ -1,51 +1,69 @@
 <?php
 /**
- * Template part for displaying posts.
+ * Template part for displaying posts
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package inku
+ * @package HOUSE_of_KILLLING
  */
 
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-        <div class="post-content">
 
-			<header class="entry-header">
-        		<?php the_title( sprintf( '<h2 class="post-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-        	</header><!-- .entry-header -->
 
-			
-
-        	<div class="entry-content">
+<?php if ( has_post_thumbnail() ) : ?>
+		<header class="entry-header">
+			<div class="relative">
 				<?php
-					the_content();
+				if ( is_singular() ) :
+					the_title( '<h1 class="entry-title">', '</h1>' );
+				else :
+					the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+				endif;
 				?>
+				<?php house_of_killing_post_thumbnail(); ?>
+				<div class="flex-row right absolute">
+						<div class="dot"></div>
+						<div class="dot"></div>
+					</div>
+			</div>
+		</header><!-- .entry-header -->
+	
+	<?php else :
+				
+	
+	endif; ?>
+	
+	
 
-				<?php
-					wp_link_pages( array(
-						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'inku' ),
-						'after'  => '</div>',
-					) );
-				?>
-			</div><!-- .entry-content -->
+	<div class="entry-content">
+		<?php
+		the_content(
+			sprintf(
+				wp_kses(
+					/* translators: %s: Name of current post. Only visible to screen readers */
+					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'house_of_killing' ),
+					array(
+						'span' => array(
+							'class' => array(),
+						),
+					)
+				),
+				wp_kses_post( get_the_title() )
+			)
+		);
 
-			<div class="clearfix"></div>
-
-			<?php if ( 'post' === get_post_type() ) : ?>
-			<footer class="entry-footer">
-				<div class="metadata">
-	                <?php inku_metadata(); ?>
-	                <div class="clearfix"></div>
-	            </div><!-- /metadata -->
-            </footer><!-- .entry-footer -->
-            <?php endif; ?>
-
-			<div class="clearfix"></div>
+		wp_link_pages(
+			array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'house_of_killing' ),
+				'after'  => '</div>',
+			)
+		);
+		?>
+	</div><!-- .entry-content -->
 
 
 
-
-		</div><!-- /post_content -->
-</article><!-- #post-## -->
+	
+</article><!-- #post-<?php the_ID(); ?> -->

@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package inku
+ *@package HOUSE_OF_KILLING
  */
 
 ?>
@@ -18,34 +18,102 @@
 
 </main><!-- #main -->
 
-<div class="inku-main-menu">  
-    <button id="inku-nav-btn" type="button" class="menu-toggle" data-toggle="collapse" aria-controls="primary-menu" aria-expanded="false">
-            <div class="eyes">   
-                    <div class="eye">
-                            <div class="ball"></div>
-                                    <div class="lid"></div>
-                            </div>
 
-                            <div class="eye">
-                                    <div class="ball"></div>
-                            <div class="lid"></div>
-                    </div>   
-            </div>
-                
-    </button>  
-                    
-                                        
-     <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'inku' ); ?>">
-             
-            <?php wp_nav_menu( array(
-                        'theme_location' => 'primary',
-                        'menu_id'        => 'primary-menu',
-             ) ); ?>
-                       
-    </nav><!-- #site-navigation -->
-                    
-</div><!-- /inku-main-menu -->
 
+
+
+<div id="crystal" >	
+	<div class="flex-row right absolute">
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+
+	<img  src="https://stayvirtual.s3.amazonaws.com/crystals/greencrystal">
+
+</div>
+
+<?php
+    $my_excerpt = get_the_excerpt();
+     if($my_excerpt !='') {
+        $my_excerpt = $my_excerpt;
+     } else{
+        $my_excerpt = "HOUSE OF KILLING feat Esben Holk";
+     }
+?>
+
+<footer id="footer">
+		<div style="width: 100%">
+
+			<div id="imagecontainer">
+					<img id="image1" class="square vhs-flicker" src="">
+					<div id="buttoncontainer">
+						<img id="image2"class="rect vhs-flicker" src="">
+						<div class="flex-row right absolute">
+							<div class="dot"></div>
+							<div class="dot"></div>
+						</div>
+						<p id="remix" class="grow">remix</p>
+					</div>
+			</div>
+
+			<?php get_sidebar();?>
+		</div>
+		
+	
+	<div id="ticker2" class="vhs-flicker">
+        <div class="headlines">
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+			<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+        	<a href="/" class="ticker-object"> <?php echo $my_excerpt ?> </a>
+
+
+                                
+
+        </div>
+                        
+    </div>
+</footer>
         
 
 
