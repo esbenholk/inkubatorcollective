@@ -17,7 +17,7 @@
 
 get_header(); ?>
 
-<?php $src = get_stylesheet_directory_uri().'/js/audio.js';?>
+<?php $src = get_stylesheet_directory_uri().'/js/audio-bloom.js';?>
 
 <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js
 "></script>
@@ -85,6 +85,34 @@ get_header(); ?>
 	
 <?php get_footer(); ?>
 
+<script type="x-shader/x-vertex" id="vertexshader">
+
+varying vec2 vUv;
+
+void main() {
+
+	vUv = uv;
+
+	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+}
+
+</script>
+
+<script type="x-shader/x-fragment" id="fragmentshader">
+
+uniform sampler2D baseTexture;
+uniform sampler2D bloomTexture;
+
+varying vec2 vUv;
+
+void main() {
+
+	gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
+
+}
+
+</script>
 
 	
 

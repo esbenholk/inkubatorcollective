@@ -1,6 +1,6 @@
 import * as THREE from '/wp-content/themes/house_of_killing/three/build/three.module.js';
 import { OrbitControls } from '/wp-content/themes/house_of_killing/three/examples/jsm/controls/OrbitControls.js';
-import { Reflector } from '/wp-content/themes/inkubatorcollective/three/examples/jsm/objects/Reflector.js';
+import { Reflector } from '/wp-content/themes/house_of_killing/three/examples/jsm/objects/Reflector.js';
 
 
 
@@ -317,7 +317,7 @@ function play() {
 
     window.addEventListener( 'resize', onWindowResize, false );
 
-    audio.play();
+    // audio.play();
     audio.style.display = 'block';
 };
 

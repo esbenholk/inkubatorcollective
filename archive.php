@@ -11,7 +11,7 @@ get_header();
 ?>
 
 <main id="primary" class="site-main" id="archive-page">
-		<?php $src = get_stylesheet_directory_uri().'/js/raycast-picker.js';?>
+		<?php $src = get_stylesheet_directory_uri().'/js/raycast-picker-bloom.js';?>
 
 		<script type="module" src="<?php echo esc_url($src); ?>"></script>
 
@@ -83,3 +83,35 @@ get_header();
 	<img  src="https://stayvirtual.s3.amazonaws.com/crystals/greencrystal">
 
 </div>
+
+
+
+
+<script type="x-shader/x-vertex" id="vertexshader">
+
+varying vec2 vUv;
+
+void main() {
+
+	vUv = uv;
+
+	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+}
+
+</script>
+
+<script type="x-shader/x-fragment" id="fragmentshader">
+
+uniform sampler2D baseTexture;
+uniform sampler2D bloomTexture;
+
+varying vec2 vUv;
+
+void main() {
+
+	gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
+
+}
+
+</script>

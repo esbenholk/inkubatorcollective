@@ -116,7 +116,6 @@ function init() {
 	canvas.appendChild( renderer.domElement );
 	// setup camera
 	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 3000 );
-	camera.position.y = 800;
 	// setup controls
 	controls = new FirstPersonControls( camera, document.body );
 	controls.movementSpeed = 20;
@@ -293,7 +292,7 @@ function render(){
   renderer.render( scene, camera );
 
   const time = Date.now() * 0.25;
-  const d = 3000;
+  const d = 100;
   
           light1.position.x = Math.sin( time * 20 ) * d;
           light1.position.z = Math.cos( time * 300 ) * d;
@@ -312,6 +311,7 @@ function render(){
   
           light6.position.x = Math.cos( time * 0.1 ) * d;
           light6.position.z = Math.cos( time * 0.5 ) * d;
+          
           light7.position.x = Math.cos( time * 0.7 ) * d;
           light7.position.z = Math.cos( time * 0.5 ) * d;
 

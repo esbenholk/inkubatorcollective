@@ -36,7 +36,7 @@
      if($my_excerpt !='') {
         $my_excerpt = $my_excerpt;
      } else{
-        $my_excerpt = "Jennifer Aniston Superfans Digital Tarot Landscape™️";
+        $my_excerpt = "ESBEN HOLK - Creative Coding - Browserbased Art - Webdevelopment";
      }
 ?>
 <header id="header" class="site-header ">
