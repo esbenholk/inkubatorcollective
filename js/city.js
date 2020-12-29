@@ -9,6 +9,13 @@ console.log("start");
 
 let canvas = document.getElementById("canvas");
 
+canvas.addEventListener('mousedown', function(){
+  canvas.classList.add("hide-cursor")
+})
+canvas.addEventListener('mouseup', function(){
+  canvas.classList.remove("hide-cursor")
+})
+
 let c, ctx, texture;
 
 function drawCanvas(){
@@ -113,17 +120,27 @@ function init() {
 	renderer = new THREE.WebGLRenderer( { antialias: true, alpha: false } );
 	renderer.setClearColor( 0xd8e7ff );
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	canvas.appendChild( renderer.domElement );
+  canvas.appendChild( renderer.domElement );
+  
+  // setup scene
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x0026ff)
 	// setup camera
-	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 3000 );
+  camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 3000 );
+  camera.position.y = 100;
+  camera.lookAt( scene.position );
+
 	// setup controls
 	controls = new FirstPersonControls( camera, document.body );
 	controls.movementSpeed = 20;
 	controls.lookSpeed = 0.05;
-	controls.lookVertical = true;
-	// setup scene
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0x0026ff)
+  controls.verticalMax = -7;
+  controls.verticalMin = 0.9;
+  controls.heightMin = 10;
+  controls.heightSpeed = true;
+
+
+
 	// scene.fog = new THREE.FogExp2( 0x000000, 0.0025 );
 	// setup lighting
 	light = new THREE.HemisphereLight( 0xfffff0, 0x101020, 1.25 );
@@ -282,7 +299,14 @@ function animate() {
 	requestAnimationFrame( animate );
 	
 	var time = performance.now() / 1000;
-	controls.update( time - lastTime );
+  controls.update( time - lastTime );
+  console.log(camera.position);
+  if(camera.position.y <= 10){
+    camera.position.y = 10;
+  }
+  if(camera.position.y >= 130){
+    camera.position.y = 130;
+  }
 
   lastTime = time;
   render()
@@ -291,13 +315,13 @@ function render(){
   texture.needsUpdate = true;
   renderer.render( scene, camera );
 
-  const time = Date.now() * 0.25;
-  const d = 100;
+  const time = Date.now() * 0.025;
+  const d = 10;
   
           light1.position.x = Math.sin( time * 20 ) * d;
-          light1.position.z = Math.cos( time * 300 ) * d;
+          light1.position.z = Math.cos( time * 30 ) * d;
   
-          light2.position.x = Math.cos( time *500) * d;
+          light2.position.x = Math.cos( time *10) * d;
           light2.position.z = Math.sin( time * 0 ) * d;
   
           light3.position.x = Math.sin( time * 0.1 ) * d;
@@ -315,8 +339,9 @@ function render(){
           light7.position.x = Math.cos( time * 0.7 ) * d;
           light7.position.z = Math.cos( time * 0.5 ) * d;
 
-          light8.position.x = Math.cos( time * 0.7 ) * d;
-          light8.position.z = Math.cos( time * 0.5 ) * d;
+          light8.position.x = camera.position.x;
+          light8.position.z = camera.position.z;
+          light8.position.y = camera.position.y;
 
 }
 

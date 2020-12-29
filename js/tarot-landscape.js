@@ -2,9 +2,6 @@ import * as THREE from '/wp-content/themes/house_of_killing/three/build/three.mo
 import { PointerLockControls } from '/wp-content/themes/house_of_killing/three/examples/jsm/controls/PointerLockControls.js';
 
 
-
-
-
 let imagearray = ["https://tarotcars.s3.amazonaws.com/anistonappletree.png",
 "https://tarotcars.s3.amazonaws.com/anistonbodybuilder.png",
 "https://tarotcars.s3.amazonaws.com/anistonchariot.jpg",
@@ -47,10 +44,11 @@ let images=[];
     images.push(imagearray[Math.floor(Math.random() * imagearray.length)]);
 
 
-
-
 var camera, scene, renderer, controls, group;
 let light1, light2, light3, light4, light5, light6, flashlight;
+
+const mouse = new THREE.Vector2();
+
 
 var objects = [];
 let movingtext = [];
@@ -411,6 +409,7 @@ function createFlag(url, x, z, rotationY, xvalue, yvalue, zvalue){
     object = new THREE.Mesh( clothGeometry, clothMaterial );
     object.position.set( 0, 0, 0 );
     object.castShadow = true;
+    object.userData = {card:url}
     group.add( object );
 
     object.customDepthMaterial = new THREE.MeshDepthMaterial( {
@@ -467,6 +466,7 @@ function createFlag(url, x, z, rotationY, xvalue, yvalue, zvalue){
     group.castShadow = true;
     group.scale.set(0.5,0.5,0.5);
     scene.add(group)
+   
 
     
    
@@ -474,8 +474,6 @@ function createFlag(url, x, z, rotationY, xvalue, yvalue, zvalue){
 
 
 }
-
-
 
 
 init();
@@ -487,9 +485,7 @@ function init() {
 
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
     camera.position.y = 10;
-    // scene = new THREE.Scene();
-    // scene.background = new THREE.Color(0x00f2ff);
-    // scene.fog = new THREE.Fog(0x00f2ff, 30, 500);
+
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0x0005af);
     scene.fog = new THREE.Fog( 0x0005af, 10, 300 );
@@ -578,29 +574,6 @@ function init() {
 
     document.addEventListener( 'keydown', onKeyDown, false );
     document.addEventListener( 'keyup', onKeyUp, false );
-
-
-    // var groundTexture =  new THREE.Texture(generateTexture());
-
-      function generateTexture() {
-        var size = 20;
-        let floorcolor = document.createElement("canvas");
-        floorcolor.width = size;
-        floorcolor.height = size;
-        // get context
-        var context = floorcolor.getContext("2d");
-        // draw gradient
-        context.rect(0, 0, size, size);
-        var gradient = context.createRadialGradient(0, 0, 20, 40, size, size);
-        gradient.addColorStop(0, "#00f2ff"); // light blue
-        gradient.addColorStop(0.6, "#fe6fff"); // dark blue
-        gradient.addColorStop(0.8, "#0033ff"); // dark blue
-
-        context.fillStyle = gradient;
-        context.fill();
-
-        return floorcolor;
-      }
  
     const texture = textureLoader.load( "/wp-content/themes/house_of_killing/images/waternormals.jpg" );
 
@@ -795,7 +768,9 @@ function init() {
     //
 
     window.addEventListener( 'resize', onWindowResize, false );
-    window.addEventListener( "mousemove", onDocumentMouseMove, false );
+    // window.addEventListener( "mousemove", onDocumentMouseMove, false );
+    canvas.addEventListener( 'mousemove', onMouseMove, false );
+
     group = new THREE.Group();
     scene.add( group );
     
@@ -946,40 +921,66 @@ function render(){
 
 
 
-var selectedObject = null;
-function onDocumentMouseMove( event ) {
-    event.preventDefault();
-    if ( selectedObject ) {
-        // selectedObject.material.color.set( '#69f' );
-        selectedObject = null;
-    }
+// var selectedObject = null;
+// function onDocumentMouseMove( event ) {
+//     event.preventDefault();
+//     if ( selectedObject ) {
+//         // selectedObject.material.color.set( '#69f' );
+//         selectedObject = null;
+//     }
 
-    var intersects = getIntersects( event.layerX, event.layerY );
-    if ( intersects.length > 0 ) {
-        var res = intersects.filter( function ( res ) {
-            return res && res.object;
-        } )[ 0 ];
+//     var intersects = getIntersects( event.layerX, event.layerY );
+//     if ( intersects.length > 0 ) {
+//         var res = intersects.filter( function ( res ) {
+//             return res && res.object;
+//         } )[ 0 ];
 
-        if ( res && res.object ) {
-            selectedObject = res.object;
-            // selectedObject.material.color.set( '#f00' );
-        }
+//         if ( res && res.object ) {
+//             selectedObject = res.object;
+//             // selectedObject.material.color.set( '#f00' );
+//         }
 
-    }
+//     }
 
-}
+// }
 var raycaster = new THREE.Raycaster();
-var mouseVector = new THREE.Vector3();
-// raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
+// var mouseVector = new THREE.Vector3();
+// // raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
 
-function getIntersects( x, y ) {
+// function getIntersects( x, y ) {
 
-    x = ( x / window.innerWidth ) * 2 - 1;
-    y = - ( y / window.innerHeight ) * 2 + 1;
+//     x = ( x / window.innerWidth ) * 2 - 1;
+//     y = - ( y / window.innerHeight ) * 2 + 1;
 
-    mouseVector.set( x, y, 0.5 );
-    raycaster.setFromCamera( mouseVector, camera );
+//     mouseVector.set( x, y, 0.5 );
+//     raycaster.setFromCamera( mouseVector, camera );
 
-    return raycaster.intersectObject( group, true );
+//     return raycaster.intersectObject( group, true );
+
+// }
+
+
+function onMouseMove( event ) {
+
+    mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+    raycaster.setFromCamera( mouse, camera );
+
+    // See if the ray from the camera into the world hits one of our meshes
+    var intersects = raycaster.intersectObjects(scene.children, true);
+    // Toggle rotation bool for meshes that we clicked
+    if ( intersects.length > 0 ) {
+
+        if(intersects[0].object){
+            console.log("userdata", intersects[0].object, intersects[0].object.userdata);
+
+            if(intersects[0].object.userdata){
+                console.log(intersects[0].object.userdata);
+            }
+            // current_project.innerHTML = intersects[0].object.userData.title;
+        //    console.log("object", intersects[0].object);
+        }
+        
+    }
 
 }

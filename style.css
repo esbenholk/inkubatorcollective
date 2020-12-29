@@ -122,9 +122,16 @@ li{
 	color: white;
 	width:100%;
 }
-#buttons button:focus{
+button:focus{
 	outline: none;
 
+}
+.ux_button{
+	width: 100%;
+	border: 2px var(--neongreen) solid;
+	background-color: rgba(0,0,0,0);
+	text-align: center;
+	color: white
 }
 
 #start{
@@ -151,6 +158,9 @@ li{
 	display: none;
 }
 
+.hide-cursor{
+	cursor: none;
+}
 
 
 .container{
@@ -197,6 +207,18 @@ loader
 .loading-container-green{
 	margin: 0px;
 	background: radial-gradient(var(--neongreen), blue);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+
+}
+
+.loading-container-pink{
+	margin: 0px;
+	background: radial-gradient(pink, blue);
 	display: flex;
 	justify-content: center;
 	align-items: center;

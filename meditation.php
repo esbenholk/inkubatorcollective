@@ -17,6 +17,15 @@
 
 get_header(); ?>
 
+<?php
+    $my_excerpt = get_the_excerpt();
+     if($my_excerpt !='') {
+        $my_excerpt = $my_excerpt;
+     } else{
+        $my_excerpt = "";
+     }
+?>
+
 <?php $src = get_stylesheet_directory_uri().'/js/audio-bloom.js';?>
 
 <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js
@@ -27,7 +36,7 @@ get_header(); ?>
 
 <div id="threeDfrontpage" class="page col-md-12">
     
-    <div id='loading-screen' class="loading-container-green">
+    <div id='loading-screen' class="loading-container-pink">
             <div id="loading-status" class="loading-circle green">
                 <div class="loader green" id="startbutton"> 
                 </div>
@@ -47,7 +56,8 @@ get_header(); ?>
 					</div>
 					<p>
 						<p id="project-title">
-							
+							<?php echo $my_excerpt ?>
+
 						</p>
 
 					</p>

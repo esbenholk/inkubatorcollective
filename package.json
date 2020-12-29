@@ -19,6 +19,11 @@
   "devDependencies": {
     "@wordpress/scripts": "^12.1.0",
     "dir-archiver": "^1.1.1",
+    "eslint": "^7.15.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
     "node-sass": "^4.14.1",
     "rtlcss": "^2.5.0"
   },
@@ -35,12 +40,12 @@
     "plugins": [],
     "map": false
   },
+
   "scripts": {
     "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
     "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
     "compile:rtl": "rtlcss style.css style-rtl.css",
-    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js 'js/*.js'",
+    "lint":"eslint",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map"
   },
   "dependencies": {}
